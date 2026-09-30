@@ -53,11 +53,11 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             margin-bottom: 20px;
         }
 
-        .car {
+        .car-loader {
             position: absolute;
             left: 0%;
             bottom: 5px;
-            font-size: 2.2rem;
+            width: 50px;
             transform: translateX(-50%);
             transition: left 0.1s linear;
         }
@@ -83,15 +83,14 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         }
 
         .title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #8ed0ff;
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: center;
             text-shadow: 0 0 12px rgba(142, 208, 255, 0.7);
             z-index: 10;
         }
 
-        /* SVG del Ramo de Flores */
         .bouquet-container {
             position: relative;
             width: 320px;
@@ -99,10 +98,23 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-        /* Estrellas / Luces de fondo */
+        /* Carritos decorativos en el ramo */
+        .car-item {
+            position: absolute;
+            z-index: 15;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+            animation: floatCar 3s infinite ease-in-out alternate;
+        }
+
+        @keyframes floatCar {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        /* Luces de fondo */
         .bg-glow {
             position: absolute;
             width: 100%;
@@ -127,11 +139,11 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             100% { opacity: 1; transform: scale(1.4); }
         }
 
-        /* Modal/Card de Carritos Hot Wheels */
+        /* Tarjeta de Hot Wheels */
         .card-modal {
             position: absolute;
-            bottom: 30px;
-            background: rgba(15, 23, 42, 0.9);
+            bottom: 25px;
+            background: rgba(15, 23, 42, 0.92);
             border: 2px solid #38bdf8;
             border-radius: 16px;
             padding: 15px;
@@ -176,14 +188,21 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
     <div id="loading-screen">
         <h1 class="loading-title">Cargando tu ramo de<br>Hot Wheels...</h1>
         <div class="car-container">
-            <div class="car" id="car-icon">🏎️</div>
+            <div class="car-loader" id="car-icon">
+                <!-- Auto Deportivo Rojo SVG -->
+                <svg viewBox="0 0 100 40" width="50">
+                    <path d="M10 25 Q15 15 30 13 L60 13 Q75 13 85 22 L95 25 Q98 28 95 32 L5 32 Z" fill="#dc2626"/>
+                    <path d="M32 15 L45 8 L62 8 L72 15 Z" fill="#38bdf8" opacity="0.8"/>
+                    <circle cx="25" cy="32" r="6" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+                    <circle cx="75" cy="32" r="6" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+                </svg>
+            </div>
         </div>
         <div class="percentage" id="percent-text">0%</div>
     </div>
 
     <!-- Contenido del Ramo -->
     <div id="main-content">
-        <!-- Puntos brillantes de fondo -->
         <div class="bg-glow">
             <div class="glow-point" style="top:20%; left:15%;"></div>
             <div class="glow-point" style="top:15%; right:20%;"></div>
@@ -195,8 +214,39 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         <h1 class="title">Feliz Día de los<br>Carritos de Hot Wheels 💙</h1>
 
         <div class="bouquet-container">
+            <!-- AUTO AZUL EN EL RAMO -->
+            <div class="car-item" style="top: 20%; left: 10%; transform: rotate(-15deg);">
+                <svg viewBox="0 0 100 40" width="65">
+                    <path d="M10 25 Q15 15 30 13 L60 13 Q75 13 85 22 L95 25 Q98 28 95 32 L5 32 Z" fill="#2563eb"/>
+                    <path d="M32 15 L45 8 L62 8 L72 15 Z" fill="#93c5fd" opacity="0.8"/>
+                    <circle cx="25" cy="32" r="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+                    <circle cx="75" cy="32" r="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <!-- AUTO ROJO EN EL RAMO -->
+            <div class="car-item" style="top: 15%; right: 10%; transform: rotate(15deg); animation-delay: 1s;">
+                <svg viewBox="0 0 100 40" width="65">
+                    <path d="M10 25 Q15 15 30 13 L60 13 Q75 13 85 22 L95 25 Q98 28 95 32 L5 32 Z" fill="#dc2626"/>
+                    <path d="M32 15 L45 8 L62 8 L72 15 Z" fill="#fca5a5" opacity="0.8"/>
+                    <circle cx="25" cy="32" r="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+                    <circle cx="75" cy="32" r="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <!-- AUTO AMARILLO EN EL RAMO -->
+            <div class="car-item" style="top: 45%; left: 38%; animation-delay: 0.5s;">
+                <svg viewBox="0 0 100 40" width="70">
+                    <path d="M10 25 Q15 15 30 13 L60 13 Q75 13 85 22 L95 25 Q98 28 95 32 L5 32 Z" fill="#eab308"/>
+                    <path d="M32 15 L45 8 L62 8 L72 15 Z" fill="#fef08a" opacity="0.8"/>
+                    <circle cx="25" cy="32" r="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+                    <circle cx="75" cy="32" r="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <!-- SVG DEL RAMO DE FLORES -->
             <svg width="300" height="350" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- TALLOS Y HOJAS -->
+                <!-- TALLOS -->
                 <path d="M150 330 Q145 250 100 170" stroke="#166534" stroke-width="5" stroke-linecap="round"/>
                 <path d="M150 330 Q150 250 150 150" stroke="#15803d" stroke-width="6" stroke-linecap="round"/>
                 <path d="M150 330 Q155 250 200 170" stroke="#166534" stroke-width="5" stroke-linecap="round"/>
@@ -213,49 +263,28 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 <path d="M145 322 L130 345 L145 340 Z" fill="#38bdf8"/>
                 <path d="M155 322 L170 345 L155 340 Z" fill="#38bdf8"/>
 
-                <!-- FLOR CENTRO -->
+                <!-- FLORES -->
                 <g transform="translate(150, 140)">
                     <g fill="#38bdf8">
                         <circle cx="0" cy="-28" r="12"/><circle cx="20" cy="-20" r="12"/><circle cx="28" cy="0" r="12"/><circle cx="20" cy="20" r="12"/><circle cx="0" cy="28" r="12"/><circle cx="-20" cy="20" r="12"/><circle cx="-28" cy="0" r="12"/><circle cx="-20" cy="-20" r="12"/>
                     </g>
                     <circle cx="0" cy="0" r="14" fill="#0f172a"/>
                 </g>
-
-                <!-- FLOR IZQUIERDA -->
                 <g transform="translate(90, 160)">
                     <g fill="#0284c7">
                         <circle cx="0" cy="-24" r="10"/><circle cx="17" cy="-17" r="10"/><circle cx="24" cy="0" r="10"/><circle cx="17" cy="17" r="10"/><circle cx="0" cy="24" r="10"/><circle cx="-17" cy="17" r="10"/><circle cx="-24" cy="0" r="10"/><circle cx="-17" cy="-17" r="10"/>
                     </g>
                     <circle cx="0" cy="0" r="12" fill="#0f172a"/>
                 </g>
-
-                <!-- FLOR DERECHA -->
                 <g transform="translate(210, 160)">
                     <g fill="#0284c7">
                         <circle cx="0" cy="-24" r="10"/><circle cx="17" cy="-17" r="10"/><circle cx="24" cy="0" r="10"/><circle cx="17" cy="17" r="10"/><circle cx="0" cy="24" r="10"/><circle cx="-17" cy="17" r="10"/><circle cx="-24" cy="0" r="10"/><circle cx="-17" cy="-17" r="10"/>
                     </g>
                     <circle cx="0" cy="0" r="12" fill="#0f172a"/>
                 </g>
-
-                <!-- FLOR ARRIBA IZQ -->
-                <g transform="translate(110, 85)">
-                    <g fill="#7dd3fc">
-                        <circle cx="0" cy="-22" r="9"/><circle cx="15" cy="-15" r="9"/><circle cx="22" cy="0" r="9"/><circle cx="15" cy="15" r="9"/><circle cx="0" cy="22" r="9"/><circle cx="-15" cy="15" r="9"/><circle cx="-22" cy="0" r="9"/><circle cx="-15" cy="-15" r="9"/>
-                    </g>
-                    <circle cx="0" cy="0" r="10" fill="#0f172a"/>
-                </g>
-
-                <!-- FLOR ARRIBA DER -->
-                <g transform="translate(190, 85)">
-                    <g fill="#7dd3fc">
-                        <circle cx="0" cy="-22" r="9"/><circle cx="15" cy="-15" r="9"/><circle cx="22" cy="0" r="9"/><circle cx="15" cy="15" r="9"/><circle cx="0" cy="22" r="9"/><circle cx="-15" cy="15" r="9"/><circle cx="-22" cy="0" r="9"/><circle cx="-15" cy="-15" r="9"/>
-                    </g>
-                    <circle cx="0" cy="0" r="10" fill="#0f172a"/>
-                </g>
             </svg>
         </div>
 
-        <!-- Mensajes tipo Hot Wheels -->
         <div class="card-modal" id="card-modal">
             <div class="hotwheels-badge">HOT WHEELS</div>
             <div class="card-text" id="card-phrase">Aceleraste mi corazón desde el primer día. 🏎️💨</div>
@@ -263,7 +292,6 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
     </div>
 
     <script>
-        // Animación de Carga
         const carIcon = document.getElementById('car-icon');
         const percentText = document.getElementById('percent-text');
         const loadingScreen = document.getElementById('loading-screen');
@@ -298,7 +326,6 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             }
         }, 35);
 
-        // Cambiar frases periódicamente
         let phraseIndex = 0;
         setInterval(() => {
             phraseIndex = (phraseIndex + 1) % frases.length;
@@ -318,7 +345,6 @@ class MiServidor(BaseHTTPRequestHandler):
         self.wfile.write(HTML_TEMPLATE.encode('utf-8'))
 
 if __name__ == '__main__':
-    # Lee el puerto dinámico de Render
     puerto = int(os.environ.get('PORT', 8000))
     servidor = HTTPServer(('0.0.0.0', puerto), MiServidor)
     print(f"Servidor listo en el puerto {puerto}")
